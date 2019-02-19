@@ -14,11 +14,22 @@ symbol = "NFLX" # TODO: capture user input, like... input("Please specify a stoc
 # see: https://www.alphavantage.co/documentation/#daily (or a different endpoint, as desired)
 # TODO: assemble the request url to get daily data for the given stock symbol...
 
+
+
+
 # TODO: use the "requests" package to issue a "GET" request to the specified url, and store the JSON response in a variable...
+
+
+
 
 # TODO: further parse the JSON response...
 
+
+
+
 # TODO: traverse the nested response data structure to find the latest closing price and other values of interest...
+
+
 latest_price_usd = "$100,000.00"
 
 #
