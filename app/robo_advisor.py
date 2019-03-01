@@ -17,7 +17,9 @@ load_dotenv() # loads environment variables set in a ".env" file, including the 
 #api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
 #print("API KEY: " + api_key) # TODO: remove or comment-out this line after you have verified the environment variable is getting read properly
 
-symbol = "NFLX" # TODO: capture user input, like... input("Please specify a stock symbol: ")
+api_key = os.environ.get("MY_API_KEY") #MY_API_KEY
+print(api_key)
+symbol = input("Please enter the stock symbol you'd like to analyze: ") # TODO: capture user input, like... input("Please specify a stock symbol: ")
 
 # see: https://www.alphavantage.co/documentation/#daily (or a different endpoint, as desired)
 # TODO: assemble the request url to get daily data for the given stock symbol...
@@ -27,7 +29,7 @@ symbol = "NFLX" # TODO: capture user input, like... input("Please specify a stoc
 
 # TODO: use the "requests" package to issue a "GET" request to the specified url, and store the JSON response in a variable...
 
-request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=MSFT&apikey=demo"
+request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
 
 response = requests.get(request_url)
 #print(type(response))
@@ -95,7 +97,7 @@ with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writin
             "high": to_usd(float(daily_prices["2. high"])) , 
             "low": to_usd(float(daily_prices["3. low"])), 
             "close": to_usd(float(daily_prices["4. close"])), 
-            "volume": to_usd(float(daily_prices["5. volume"]))
+            "volume": daily_prices["5. volume"]
         })
 
     #writer.writerow({"city": "New York", "name": "Mets"})
