@@ -18,8 +18,33 @@ load_dotenv() # loads environment variables set in a ".env" file, including the 
 #print("API KEY: " + api_key) # TODO: remove or comment-out this line after you have verified the environment variable is getting read properly
 
 api_key = os.environ.get("MY_API_KEY") #MY_API_KEY
-print(api_key)
-symbol = input("Please enter the stock symbol you'd like to analyze: ") # TODO: capture user input, like... input("Please specify a stock symbol: ")
+
+
+#***************************
+#Data validation:
+
+message = "Please enter the stock symbol you'd like to analyze.  "
+
+x = 1
+while x == 1:
+    sym_input = input(message)
+    if sym_input.isalpha() != True:
+        print("Please enter a 4 letter stock symbol")
+    else:
+        request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={sym_input}&apikey={api_key}"
+        response = requests.get(request_url)
+
+        if 'Error' in response.text:
+            print ("Invalid input")
+        else:
+            break
+
+
+
+
+
+
+#symbol = input("Please enter the stock symbol you'd like to analyze: ") # TODO: capture user input, like... input("Please specify a stock symbol: ")
 
 # see: https://www.alphavantage.co/documentation/#daily (or a different endpoint, as desired)
 # TODO: assemble the request url to get daily data for the given stock symbol...
@@ -29,9 +54,7 @@ symbol = input("Please enter the stock symbol you'd like to analyze: ") # TODO: 
 
 # TODO: use the "requests" package to issue a "GET" request to the specified url, and store the JSON response in a variable...
 
-request_url = f"https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol={symbol}&apikey={api_key}"
 
-response = requests.get(request_url)
 #print(type(response))
 #print(response.status_code)
 #print(response.text)
@@ -107,10 +130,6 @@ with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writin
 
 
 
-
-
-
-
 # TODO: further revise the example outputs below to reflect real information
 
 
@@ -118,7 +137,7 @@ t = datetime.datetime.now()
 t.strftime("%Y-%m-%d %I:%M %p")
 
 print("-----------------")
-print(f"STOCK SYMBOL: {symbol}")
+print(f"STOCK SYMBOL: {sym_input}")
 print("RUN AT: " + t.strftime("%Y-%m-%d %I:%M %p"))
 print("-----------------")
 print(f"LATEST DAY OF AVAILABLE DATA: {last_refreshed}" )
