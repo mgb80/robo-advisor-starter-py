@@ -78,13 +78,32 @@ latest_price_usd = "$100,000.00"
 os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv")
 csv_file_path = os.path.join(os.path.dirname(__file__), "..", "data", "prices.csv") # a relative filepath
 
+csv_headers = ["timestamp", "open", "high", "low", "close", "volume"]
+
+#Writing info to file 
 with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writing"
-    writer = csv.DictWriter(csv_file, fieldnames=["city", "name"])
+    writer = csv.DictWriter(csv_file, fieldnames=csv_headers)
     writer.writeheader() # uses fieldnames set above
-    writer.writerow({"city": "New York", "name": "Yankees"})
-    writer.writerow({"city": "New York", "name": "Mets"})
-    writer.writerow({"city": "Boston", "name": "Red Sox"})
-    writer.writerow({"city": "New Haven", "name": "Ravens"})
+
+    #LOOP to write each row
+
+    for d in dates:
+        writer.writerow({
+            "timestamp": date,
+            "open": , 
+            "high": , 
+            "low": , 
+            "close": , 
+            "volume":
+        })
+
+    #writer.writerow({"city": "New York", "name": "Mets"})
+    #writer.writerow({"city": "Boston", "name": "Red Sox"})
+    #writer.writerow({"city": "New Haven", "name": "Ravens"})
+
+
+
+
 
 
 
