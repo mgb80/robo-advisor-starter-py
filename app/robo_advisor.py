@@ -6,8 +6,8 @@ import requests
 load_dotenv() # loads environment variables set in a ".env" file, including the value of the ALPHAVANTAGE_API_KEY variable
 
 # see: https://www.alphavantage.co/support/#api-key
-api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
-print("API KEY: " + api_key) # TODO: remove or comment-out this line after you have verified the environment variable is getting read properly
+#api_key = os.environ.get("ALPHAVANTAGE_API_KEY")
+#print("API KEY: " + api_key) # TODO: remove or comment-out this line after you have verified the environment variable is getting read properly
 
 symbol = "NFLX" # TODO: capture user input, like... input("Please specify a stock symbol: ")
 
@@ -19,8 +19,17 @@ symbol = "NFLX" # TODO: capture user input, like... input("Please specify a stoc
 
 # TODO: use the "requests" package to issue a "GET" request to the specified url, and store the JSON response in a variable...
 
+request_url = "https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=MSFT&interval=5min&apikey=demo"
+
+response = requests.get(request_url)
+#print(type(response))
+#print(response.status_code)
+#print(response.text)
+
+parsed_response = json.loads(response.text)
 
 
+breakpoint()
 
 # TODO: further parse the JSON response...
 
