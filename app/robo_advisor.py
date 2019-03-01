@@ -87,14 +87,15 @@ with open(csv_file_path, "w") as csv_file: # "w" means "open the file for writin
 
     #LOOP to write each row
 
-    for d in dates:
+    for date in dates:
+        daily_prices = tsd[date]
         writer.writerow({
             "timestamp": date,
-            "open": , 
-            "high": , 
-            "low": , 
-            "close": , 
-            "volume":
+            "open": to_usd(float(daily_prices["1. open"])), 
+            "high": to_usd(float(daily_prices["2. high"])) , 
+            "low": to_usd(float(daily_prices["3. low"])), 
+            "close": to_usd(float(daily_prices["4. close"])), 
+            "volume": to_usd(float(daily_prices["5. volume"]))
         })
 
     #writer.writerow({"city": "New York", "name": "Mets"})
