@@ -2,6 +2,7 @@ from dotenv import load_dotenv
 import json
 import os
 import requests
+import datetime
 
 def to_usd(my_price):
     return "${0:,.2f}".format(my_price)
@@ -72,14 +73,18 @@ latest_price_usd = "$100,000.00"
 # TODO: write response data to a CSV file
 
 # TODO: further revise the example outputs below to reflect real information
+
+t = datetime.datetime.now()
+t.strftime("%Y-%m-%d %I:%M %p")
+
 print("-----------------")
 print(f"STOCK SYMBOL: {symbol}")
-print("RUN AT: 11:52pm on June 5th, 2018")
+print("RUN AT: " + t.strftime("%Y-%m-%d %I:%M %p"))
 print("-----------------")
 print(f"LATEST DAY OF AVAILABLE DATA: {last_refreshed}" )
 print(f"LATEST DAILY CLOSING PRICE: {to_usd(float(latest_close))}")
 print(f"RECENT HIGH CLOSING PRICE: {to_usd(float(recent_high))}")
-print(f"RECENT AVERAGE LOW CLOSING PRICE:{to_usd(float(recent_low))}")
+print(f"RECENT LOW CLOSING PRICE:{to_usd(float(recent_low))}")
 print("-----------------")
 print("RECOMMENDATION: Buy!")
 print("RECOMMENDATION REASON: Because the latest closing price is within threshold XYZ etc., etc. and this fits within your risk tolerance etc., etc.")
