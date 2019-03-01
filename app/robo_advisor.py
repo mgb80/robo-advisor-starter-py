@@ -145,7 +145,8 @@ if (  float(latest_close) > float(close_av)  ):
     print("REASONING: The latest closing price is higher than the average closing price.")
 else:
     print("RECOMMENDATION: DON'T BUY!")
-    print("REASON: Because the latest closing price is less than the average closing price, we recommend you do not invest.") #REASON: Because the latest closing price is within threshold XYZ etc., etc. and this fits within your risk tolerance etc., etc.")
+    print("REASON: Because the latest closing price is less than the average closing price,")
+    print("         we recommend you do not invest.")
 print("-----------------------------------")
 print("Writing info to csv" + str(csv_file_path))
 
