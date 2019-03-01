@@ -33,16 +33,27 @@ response = requests.get(request_url)
 parsed_response = json.loads(response.text)
 
 last_refreshed = parsed_response["Meta Data"]["3. Last Refreshed"]
-
 tsd = parsed_response["Time Series (Daily)"]
-
 dates = list(tsd.keys()) #sort to ensure that the latest day is first
-
 latest_day = dates[0]
-
 latest_close = tsd[latest_day]["4. close"]
 
 
+high_price_list = []
+low_price_list = []
+
+for date in dates:
+    high_price = tsd[date]["2. high"]
+    high_price_list.append(float(high_price))
+    low_price = tsd[date]["3. low"]
+    low_price_list.append(float(low_price))
+
+
+#max of all the high prices...
+recent_high = max(high_price_list) 
+
+
+recent_low = min(low_price_list)
 
 # TODO: further parse the JSON response...
 
@@ -67,8 +78,8 @@ print("RUN AT: 11:52pm on June 5th, 2018")
 print("-----------------")
 print(f"LATEST DAY OF AVAILABLE DATA: {last_refreshed}" )
 print(f"LATEST DAILY CLOSING PRICE: {to_usd(float(latest_close))}")
-print("RECENT AVERAGE HIGH CLOSING PRICE: $101,000.00")
-print("RECENT AVERAGE LOW CLOSING PRICE: $99,000.00")
+print(f"RECENT HIGH CLOSING PRICE: {to_usd(float(recent_high))}")
+print(f"RECENT AVERAGE LOW CLOSING PRICE:{to_usd(float(recent_low))}")
 print("-----------------")
 print("RECOMMENDATION: Buy!")
 print("RECOMMENDATION REASON: Because the latest closing price is within threshold XYZ etc., etc. and this fits within your risk tolerance etc., etc.")
