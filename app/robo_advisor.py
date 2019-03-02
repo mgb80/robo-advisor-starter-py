@@ -140,13 +140,12 @@ print(f"RECENT LOW CLOSING PRICE:{to_usd(float(recent_low))}")
 
 # GIVE RECOMMENDATION__________________________
 print("-----------------------------------")
-if (  float(latest_close) > float(close_av)  ):
+if (  float(latest_close) > float((.2 * close_av) + close_av)  ):
     print("RECOMMENDATION: Buy!")
-    print("REASONING: The latest closing price is higher than the average closing price.")
+    print("REASONING: The latest closing price is 20% higher than the average closing price.")
 else:
     print("RECOMMENDATION: DON'T BUY!")
-    print("REASON: Because the latest closing price is less than the average closing price,")
-    print("         we recommend you do not invest.")
+    print("REASON: Because the latest closing price is not 20% higher than the average closing price.")
 print("-----------------------------------")
 print("Writing info to csv" + str(csv_file_path))
 
