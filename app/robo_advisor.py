@@ -31,6 +31,7 @@ api_key = os.environ.get("MY_API_KEY") #MY_API_KEY
 
 #***************************
 #Data validation:
+#adapted from https://github.com/hiepnguyen034/robo-stock/blob/master/robo_advisor.py
 
 message = "Please enter the stock symbol you'd like to analyze.  "
 
