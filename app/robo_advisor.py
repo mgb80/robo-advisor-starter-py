@@ -1,3 +1,11 @@
+
+##  ****NOTE***
+##  This is the simple functionality code...
+##  For a multi-stock program see "robo_advisor_ADVANCED.py"
+
+
+
+
 from dotenv import load_dotenv
 import json
 import os
